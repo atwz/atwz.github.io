@@ -4,9 +4,17 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="挨踢小子 Java MySQL">
-    <meta name="description" content="
-title: 二零一七年终总结date: 2018-01-22 12:32:09top: falsecover: falsepassword:toc: truemathjax: falsesummary: 时间过得很快，终于等到放寒假了，">
+    <meta name="keywords" content="挨踢小子MySQL筆記手冊整理, 挨踢小子 Java MySQL">
+    <meta name="description" content="一、库操作查看：
+-- 展示所有数据库
+SHOW DATABASES;
+
+-- 查看表结构
+desc table_name;
+
+-- 查看生成表的SQL
+show create table table_name;创建：
+//创建数据库涉及字">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +22,7 @@ title: 二零一七年终总结date: 2018-01-22 12:32:09top: falsecover: falsepa
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>挨踢小子</title>
+    <title>挨踢小子MySQL筆記手冊整理 | 挨踢小子</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -281,13 +289,13 @@ title: 二零一七年终总结date: 2018-01-22 12:32:09top: falsecover: falsepa
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        
+                        挨踢小子MySQL筆記手冊整理
                     </div>
                 </div>
             </div>
@@ -396,12 +404,25 @@ title: 二零一七年终总结date: 2018-01-22 12:32:09top: falsecover: falsepa
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/筆記/" target="_blank">
+                                <span class="chip bg-color">筆記</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/随笔/" class="post-category" target="_blank">
+                                随笔
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -409,7 +430,7 @@ title: 二零一七年终总结date: 2018-01-22 12:32:09top: falsecover: falsepa
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-09-10
+                    2018-01-22
                 </div>
 
                 
@@ -425,23 +446,15 @@ title: 二零一七年终总结date: 2018-01-22 12:32:09top: falsecover: falsepa
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <hr>
-<p>title: 二零一七年终总结<br>date: 2018-01-22 12:32:09<br>top: false<br>cover: false<br>password:<br>toc: true<br>mathjax: false<br>summary: 时间过得很快，终于等到放寒假了，虽然这几个月没有课，天天和放假也没啥区别呢。细数一下，还有5个月就要毕业了吧，大一刚入学的场景却依然清楚地记得，转眼间就成了老学长了呢。闲来无事，随便写写，有感而发，无病呻吟而已。<br>tags:</p>
-<ul>
-<li>随笔<br>categories:</li>
-<li>随笔</li>
-</ul>
-<hr>
-<h4 id="一、库操作"><a href="#一、库操作" class="headerlink" title="一、库操作"></a>一、库操作</h4><p>查看：</p>
-<pre class="line-numbers language-MySQL"><code class="language-MySQL">-- 展示所有数据库
+                <h4 id="一、库操作"><a href="#一、库操作" class="headerlink" title="一、库操作"></a>一、库操作</h4><p>查看：</p>
+<pre><code>-- 展示所有数据库
 SHOW DATABASES;
 
 -- 查看表结构
 desc table_name;
 
 -- 查看生成表的SQL
-show create table table_name;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>创建：</p>
+show create table table_name;</code></pre><p>创建：</p>
 <pre><code>//创建数据库涉及字符集、排序规则知识，后续介绍
 
 CREATE DATABASE 数据库名;
@@ -692,9 +705,9 @@ select num from 表 group by num having max(id) &gt; 50
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《》
+                    《挨踢小子MySQL筆記手冊整理》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2019/09/10/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2018/01/22/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/" property="cc:attributionName"
                rel="cc:attributionURL">
                 挨踢
             </a> 采用
@@ -739,35 +752,46 @@ select num from 表 group by num having max(id) &gt; 50
                 <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2019/09/10/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/">
+                <a href="/2018/01/22/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="挨踢小子MySQL筆記手冊整理">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">挨踢小子MySQL筆記手冊整理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-title: 二零一七年终总结date: 2018-01-22 12:32:09top: falsecover: falsepassword:toc: truemathjax: falsesummary: 时间过得很快，终于等到放寒假了，
+                            那么，接下来，将通过本篇文章学习如何使用 MySQL 数据库系统的基本操作使用，也是我们在今后的工作中会有所运用的。
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-10
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-01-22
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            挨踢
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/随笔/" class="post-category" target="_blank">
+                                    随笔
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/筆記/" target="_blank">
+                        <span class="chip bg-color">筆記</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -778,19 +802,19 @@ title: 二零一七年终总结date: 2018-01-22 12:32:09top: falsecover: falsepa
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2018/01/22/2017-conclusion/">
+                <a href="/2018/01/22/ai-ti-xiao-zi-sql-chang-yong-bi-ji-zheng-li/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="二零一七年终总结">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="挨踢小子SQL常用笔记整理">
                         
-                        <span class="card-title">二零一七年终总结</span>
+                        <span class="card-title">挨踢小子SQL常用笔记整理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            时间过得很快，终于等到放寒假了，虽然这几个月没有课，天天和放假也没啥区别呢。细数一下，还有5个月就要毕业了吧，大一刚入学的场景却依然清楚地记得，转眼间就成了老学长了呢。闲来无事，随便写写，有感而发，无病呻吟而已。
+                            挨踢小子特別整理的12道經典SQL語句，
                         
                     </div>
                     <div class="publish-info">

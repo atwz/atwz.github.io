@@ -4,12 +4,16 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="二零一七年终总结, 挨踢小子 Java MySQL">
-    <meta name="description" content="
+    <meta name="keywords" content="挨踢小子SQL常用笔记整理, 挨踢小子 Java MySQL">
+    <meta name="description" content="1、复制数据库表数据操作//微信公众号：关注挨踢小子 
 
-时间过得很快，终于等到放寒假了，虽然这几个月没有课，天天和放假也没啥区别呢。细数一下，还有5个月就要毕业了吧，大一刚入学的场景却依然清楚地记得，转眼间就成了老学长了呢。闲来无事，随便写写，有感而发，无病呻吟而已。
-2017
-回顾我的20">
+1、如果是整个表复制表达如下：
+
+insert into table1 select  * from table2
+
+2、如果是有选择性的复制数据表达如下：
+
+insert into">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +21,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>二零一七年终总结 | 挨踢小子</title>
+    <title>挨踢小子SQL常用笔记整理 | 挨踢小子</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -290,7 +294,7 @@
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        二零一七年终总结
+                        挨踢小子SQL常用笔记整理
                     </div>
                 </div>
             </div>
@@ -441,38 +445,92 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <div align="middle"><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=407679465&auto=1&height=66"></iframe></div>
+                <h4 id="1、复制数据库表数据操作"><a href="#1、复制数据库表数据操作" class="headerlink" title="1、复制数据库表数据操作"></a>1、复制数据库表数据操作</h4><pre><code>//微信公众号：关注挨踢小子 
 
-<p>时间过得很快，终于等到放寒假了，虽然这几个月没有课，天天和放假也没啥区别呢。细数一下，还有5个月就要毕业了吧，大一刚入学的场景却依然清楚地记得，转眼间就成了老学长了呢。闲来无事，随便写写，有感而发，无病呻吟而已。</p>
-<h1 id="2017"><a href="#2017" class="headerlink" title="2017"></a>2017</h1><hr>
-<p>回顾我的2017，没做什么事，令我能记得就3件大事吧：</p>
-<ul>
-<li>失恋ing</li>
-<li>ACM退役</li>
-<li>顺利保研</li>
-</ul>
-<p><strong>第一件事</strong>就不想过多回忆了，<strong>2014.12.13 ~ 2017.03.01</strong>，曲终人散。<br><img src="749826.jpg" alt><br>最后引用《我的少女时代》里的一句话吧。</p>
-<blockquote>
-<p>每人都有一颗林真心，遇见是最美好的小幸运，谢谢你出现在我的青春里。</p>
-</blockquote>
-<p><img src="1.jpg" alt><br><strong>第二件事</strong>其实也是黯淡退出吧，大三下开始课程繁忙，也就没怎么训练了，再加上暑假考驾照，于是乎就退役了。回顾三年来，从大一入学时电脑都没怎么碰过的小白，到现在算法也略有所知，也是付出过很大的努力吧，毕竟当年每天刷题，为了一个bug而熬夜到凌晨。最后也算是混了个水水的金牌，奖项不算耀眼。但最重要的是从这段经历中，学到了拼搏、坚持的一种精神，这对以后的研究生涯想必也有很大帮助。<br><img src="2.jpg" alt><br><strong>第三件事</strong>也是意料之中吧，没有什么波折。纠结了很多，虽然<strong>专业第一</strong>，但是最后还是选择保了本校。要问原因，也许是校园情怀，也许是导师人很好，也许是为了方便更早研究，也许就是懒吧。现在尘埃落定，靠人靠天不如靠自己，继续努力吧。<br><img src="3.jpg" alt></p>
-<p>过去的一年，学业未有很大长进，看着同学们整页的4.0绩点，心里倒也没有什么不平衡了。下学期保了研之后选了一门研究生的文本挖掘课，也马马虎虎读了几十篇论文，也算是对自然语言处理和深度学习入了个门，最后的presentation做的还算满意。</p>
-<h1 id="2018"><a href="#2018" class="headerlink" title="2018"></a>2018</h1><hr>
-<p>今年最重要的大事莫过于毕业论文了，因为以后要做的方向是句法分析，所以导师给我的毕业论文安排的就是《基于循环神经网络的成分句法分析》。虽然说是基于ACL2013的一篇论文改编的，但是目前为止，我还没有发现有人做和这个完全一样的。也许最后写的好的话可以直接发paper了。</p>
-<p>但是目前基本的框架还没完全搭建起来吧，代码还不是很熟练，现在只写了一个最基础的动态规划+RNN。最近有如下计划：</p>
-<ul>
-<li>准备试一下动态规划+LSTM。</li>
-<li>然后动态规划扩增一个维度，用来保存左右结点的head结点。</li>
-<li>如果这个写好了，就可以和我github找到的PCFG+CYK代码融合了，准备加上每个结点的POS。</li>
-<li>最后加入预训练词向量应该就基本完成了。</li>
-</ul>
-<p>希望能顺利毕业吧，前一段时间一直对一些实现细节有些困惑，代码还写错了，还以为理论错了。也不知道最后出来的结果会怎么样，希望能不错。</p>
-<p>生活方面，最近半年越来越懒了，极少出门，睡得晚，起的也晚。最近买了把尤克里里，也算是陶冶陶冶情操吧，不至于一直盯着电脑。现在也小有长进，能弹一点点了。</p>
-<p>现在能聊天的人越来越少了，QQ微信放那一天也不一定会有人来找，就算有人也多半是咨询问题的，等一个可以交心的人吧。有时我也想过，我是不是太像中央空调了，对所有人都这么有耐心，到头来却还是一个人，付出那么多最后还是一无所有。<br><img src="4.jpg" alt><br>最后还是祝自己2018年顺利吧，希望毕业顺利，研究生涯小有收获，最后等一个有缘人吧。</p>
-<blockquote>
-<p>我遇见谁，会有怎样的对白。<br>我等的人，她在多远的未来。</p>
-</blockquote>
+1、如果是整个表复制表达如下：
 
+insert into table1 select  * from table2
+
+2、如果是有选择性的复制数据表达如下：
+
+insert into table1(column1,column2,column3...) 
+select column1,column2,colunm3...from table2
+
+3、一个数据库中的表中的数据复制到另一个数据库中的一个表，使用方法如下：
+
+insert into 数据库A.dbo.table1(col1,col2,col3...) 
+select col1,col2,col3... from 数据库B.dbo.table2 
+
+4、直接复制现有表重命名
+
+CREATE  TABLE 表名  AS SELECT 语句；</code></pre><h4 id="2、sql的子查询可以放到查询字段之中"><a href="#2、sql的子查询可以放到查询字段之中" class="headerlink" title="2、sql的子查询可以放到查询字段之中"></a>2、sql的子查询可以放到查询字段之中</h4><pre><code>//微信公众号：关注挨踢小子 
+select  name,age,(select date from tableB)
+from tableA  where age=&quot;12&quot;；</code></pre><h4 id="3、一张表中两个字段值互换（重点思想）"><a href="#3、一张表中两个字段值互换（重点思想）" class="headerlink" title="3、一张表中两个字段值互换（重点思想）"></a>3、一张表中两个字段值互换（重点思想）</h4><pre><code>//微信公众号：关注挨踢小子 
+update table a, table b 
+set a.filed1= b.field2, a.field2= b.field1
+where a.id = b.id</code></pre><h4 id="4、实现数据库两列数据的上下移动操作"><a href="#4、实现数据库两列数据的上下移动操作" class="headerlink" title="4、实现数据库两列数据的上下移动操作"></a>4、实现数据库两列数据的上下移动操作</h4><pre><code>//微信公众号：关注挨踢小子 
+update test set priority=   
+
+(case when id=1  then    
+
+(select priority from test where id=2)    
+
+when id=2 then    
+
+(select priority from test where id=1) end)   
+
+ where id=1 or id=2; </code></pre><h4 id="5、mysql合并字符串"><a href="#5、mysql合并字符串" class="headerlink" title="5、mysql合并字符串"></a>5、mysql合并字符串</h4><pre><code>//微信公众号：关注挨踢小子 
+concat(string1,string2,string3,…)
+
+select concat( &#39;1&#39;, &#39;01&#39;,&#39;02&#39;)
+
+// 10102  
+
+concat_ws(separator,str1,str2,...)
+
+select concat_ws(&#39;-&#39;,&#39;1&#39;,&#39;2&#39;,&#39;3&#39;)
+
+// 1-2-3
+group_concat()
+group_concat( 
+[distinct] 要连接的字段 
+[order by 排序字段 asc/desc ] 
+[separator &#39;分隔符&#39;] 
+)
+
+// 例如：
+SELECT  group_concat(content  ORDER BY id DESC separator &#39;-&#39;) from t_noteinfo </code></pre><h4 id="6、删除重复数据，只保留最小ID编号"><a href="#6、删除重复数据，只保留最小ID编号" class="headerlink" title="6、删除重复数据，只保留最小ID编号"></a>6、删除重复数据，只保留最小ID编号</h4><pre><code>delete tablename where id not in(select min(id) 
+from tablename group by name,………………)</code></pre><h4 id="7、两张关联表，删除主表中已经在副表中没有的信息"><a href="#7、两张关联表，删除主表中已经在副表中没有的信息" class="headerlink" title="7、两张关联表，删除主表中已经在副表中没有的信息"></a>7、两张关联表，删除主表中已经在副表中没有的信息</h4><pre><code>delete from info where not exists 
+
+(select * from infobz where info.infid=infobz.infid)</code></pre><h4 id="8、日程安排提前五分钟提醒（日期操作）"><a href="#8、日程安排提前五分钟提醒（日期操作）" class="headerlink" title="8、日程安排提前五分钟提醒（日期操作）"></a>8、日程安排提前五分钟提醒（日期操作）</h4><pre><code>select * from 日程安排 
+
+where datediff(&#39;minute&#39;,f 开始时间,getdate())&gt;5</code></pre><h4 id="9、查询出每门课都大于90-分的学生姓名"><a href="#9、查询出每门课都大于90-分的学生姓名" class="headerlink" title="9、查询出每门课都大于90 分的学生姓名"></a>9、查询出每门课都大于90 分的学生姓名</h4><pre><code>select name from table group by name having min(fenshu)&gt;90</code></pre><h4 id="10、数据结构转换形式"><a href="#10、数据结构转换形式" class="headerlink" title="10、数据结构转换形式"></a>10、数据结构转换形式</h4><pre><code>//微信公众号：关注挨踢小子
+原表数据结构
+ year   month amount
+ 1991   1     1.1
+ 1991   2     1.2
+ 1991   3     1.3
+ 1991   4     1.4
+ 1992   1     2.1
+ 1992   2     2.2
+ 1992   3     2.3
+ 1992   4     2.4
+
+查成这样一个结果
+
+ year m1   m2   m3   m4
+ 1991 1.1 1.2 1.3 1.4
+ 1992 2.1 2.2 2.3 2.4
+
+select year, 
+    (select amount from   aaa m where month=1   and m.year=aaa.year) as m1,
+    (select amount from   aaa m where month=2   and m.year=aaa.year) as m2,
+    (select amount from   aaa m where month=3   and m.year=aaa.year) as m3,
+    (select amount from   aaa m where month=4   and m.year=aaa.year) as m4
+from aaa   group by year</code></pre><h4 id="11、find-in-set笔记学习（历史文章有详解，此处略）"><a href="#11、find-in-set笔记学习（历史文章有详解，此处略）" class="headerlink" title="11、find_in_set笔记学习（历史文章有详解，此处略）"></a>11、find_in_set笔记学习（历史文章有详解，此处略）</h4><pre><code>SELECT t.dept_id FROM sys_dept t 
+
+WHERE FIND_IN_SET (102,ancestors) </code></pre><h4 id="12、explain查看sql的具体的执行计划-历史文章有详解，此处略"><a href="#12、explain查看sql的具体的执行计划-历史文章有详解，此处略" class="headerlink" title="12、explain查看sql的具体的执行计划(历史文章有详解，此处略)"></a>12、explain查看sql的具体的执行计划(历史文章有详解，此处略)</h4><pre><code>//微信公众号：关注挨踢小子
+explain select * from tablename</code></pre>
             </div>
             <hr/>
 
@@ -630,9 +688,9 @@
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《二零一七年终总结》
+                    《挨踢小子SQL常用笔记整理》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2018/01/22/2017-conclusion/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2018/01/22/ai-ti-xiao-zi-sql-chang-yong-bi-ji-zheng-li/" property="cc:attributionName"
                rel="cc:attributionURL">
                 挨踢
             </a> 采用
@@ -676,33 +734,44 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/09/10/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/">
+                <a href="/2018/01/22/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="挨踢小子MySQL筆記手冊整理">
                         
-                        <span class="card-title"></span>
+                        <span class="card-title">挨踢小子MySQL筆記手冊整理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
-title: 二零一七年终总结date: 2018-01-22 12:32:09top: falsecover: falsepassword:toc: truemathjax: falsesummary: 时间过得很快，终于等到放寒假了，
+                            那么，接下来，将通过本篇文章学习如何使用 MySQL 数据库系统的基本操作使用，也是我们在今后的工作中会有所运用的。
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2019-09-10
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-01-22
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fa fa-user fa-fw"></i>
-                            挨踢
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/随笔/" class="post-category" target="_blank">
+                                    随笔
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/筆記/" target="_blank">
+                        <span class="chip bg-color">筆記</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -714,19 +783,19 @@ title: 二零一七年终总结date: 2018-01-22 12:32:09top: falsecover: falsepa
                 本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
             </div>
             <div class="card">
-                <a href="/2018/01/22/2017-conclusion/">
+                <a href="/2018/01/22/ai-ti-xiao-zi-sql-chang-yong-bi-ji-zheng-li/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="二零一七年终总结">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="挨踢小子SQL常用笔记整理">
                         
-                        <span class="card-title">二零一七年终总结</span>
+                        <span class="card-title">挨踢小子SQL常用笔记整理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            时间过得很快，终于等到放寒假了，虽然这几个月没有课，天天和放假也没啥区别呢。细数一下，还有5个月就要毕业了吧，大一刚入学的场景却依然清楚地记得，转眼间就成了老学长了呢。闲来无事，随便写写，有感而发，无病呻吟而已。
+                            挨踢小子特別整理的12道經典SQL語句，
                         
                     </div>
                     <div class="publish-info">

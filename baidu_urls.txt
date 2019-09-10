@@ -1,2 +1,2 @@
-https://atwz.github.io/2019/09/10/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/
-https://atwz.github.io/2018/01/22/2017-conclusion/
+https://atwz.github.io/2018/01/22/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/
+https://atwz.github.io/2018/01/22/ai-ti-xiao-zi-sql-chang-yong-bi-ji-zheng-li/
