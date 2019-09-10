@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>挨踢小子</title>
+  
+  <subtitle>Aiti</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://godweiyang.com/"/>
+  <updated>2019-09-10T08:26:45.110Z</updated>
+  <id>https://godweiyang.com/</id>
+  
+  <author>
+    <name>挨踢</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="https://godweiyang.com/2019/09/10/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/"/>
+    <id>https://godweiyang.com/2019/09/10/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/</id>
+    <published>2019-09-10T07:13:00.281Z</published>
+    <updated>2019-09-10T08:26:45.110Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;hr&gt;
+&lt;p&gt;title: 二零一七年终总结&lt;br&gt;date: 2018-01-22 12:32:09&lt;br&gt;top: false&lt;br&gt;cover: false&lt;br&gt;password:&lt;br&gt;toc: true&lt;br&gt;mathjax: false&lt;br&gt;summary:
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>二零一七年终总结</title>
+    <link href="https://godweiyang.com/2018/01/22/2017-conclusion/"/>
+    <id>https://godweiyang.com/2018/01/22/2017-conclusion/</id>
+    <published>2018-01-22T04:32:09.000Z</published>
+    <updated>2019-08-21T07:26:13.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;div align=&quot;middle&quot;&gt;&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=&quot;330&quot; height=&quot;86&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://godweiyang.com/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://godweiyang.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+</feed>
