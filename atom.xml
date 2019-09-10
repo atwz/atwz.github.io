@@ -3,11 +3,11 @@
   <title>挨踢小子</title>
   
   <subtitle>Aiti</subtitle>
-  <link href="/aiti.github.io/atom.xml" rel="self"/>
+  <link href="/atom.xml" rel="self"/>
   
-  <link href="https://atwz.github.io/aiti.github.io/"/>
+  <link href="https://atwz.github.io/"/>
   <updated>2019-09-10T08:26:45.110Z</updated>
-  <id>https://atwz.github.io/aiti.github.io/</id>
+  <id>https://atwz.github.io/</id>
   
   <author>
     <name>挨踢</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title></title>
-    <link href="https://atwz.github.io/aiti.github.io/2019/09/10/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/"/>
-    <id>https://atwz.github.io/aiti.github.io/2019/09/10/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/</id>
+    <link href="https://atwz.github.io/2019/09/10/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/"/>
+    <id>https://atwz.github.io/2019/09/10/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/</id>
     <published>2019-09-10T07:13:00.281Z</published>
     <updated>2019-09-10T08:26:45.110Z</updated>
     
@@ -41,8 +41,8 @@
   
   <entry>
     <title>二零一七年终总结</title>
-    <link href="https://atwz.github.io/aiti.github.io/2018/01/22/2017-conclusion/"/>
-    <id>https://atwz.github.io/aiti.github.io/2018/01/22/2017-conclusion/</id>
+    <link href="https://atwz.github.io/2018/01/22/2017-conclusion/"/>
+    <id>https://atwz.github.io/2018/01/22/2017-conclusion/</id>
     <published>2018-01-22T04:32:09.000Z</published>
     <updated>2019-08-21T07:26:13.000Z</updated>
     
@@ -58,10 +58,10 @@
     
     </summary>
     
-      <category term="随笔" scheme="https://atwz.github.io/aiti.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="https://atwz.github.io/categories/%E9%9A%8F%E7%AC%94/"/>
     
     
-      <category term="随笔" scheme="https://atwz.github.io/aiti.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+      <category term="随笔" scheme="https://atwz.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
