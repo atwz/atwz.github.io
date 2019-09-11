@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://atwz.github.io/"/>
-  <updated>2019-09-11T02:14:30.280Z</updated>
+  <updated>2019-09-11T02:18:58.961Z</updated>
   <id>https://atwz.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="https://atwz.github.io/2019/08/16/ai-ti-xiao-zi-dui-shu-ju-ku-de-hong-guan-ren-zhi/"/>
-    <id>https://atwz.github.io/2019/08/16/ai-ti-xiao-zi-dui-shu-ju-ku-de-hong-guan-ren-zhi/</id>
-    <published>2019-08-16T03:21:37.794Z</published>
-    <updated>2019-09-11T02:14:30.280Z</updated>
+    <title>挨踢小子对数据库的宏观认知</title>
+    <link href="https://atwz.github.io/2018/09/11/ai-ti-xiao-zi-dui-shu-ju-ku-de-hong-guan-ren-zhi/"/>
+    <id>https://atwz.github.io/2018/09/11/ai-ti-xiao-zi-dui-shu-ju-ku-de-hong-guan-ren-zhi/</id>
+    <published>2018-09-11T04:32:09.000Z</published>
+    <updated>2019-09-11T02:18:58.961Z</updated>
     
     <summary type="html">
     
@@ -38,6 +38,10 @@
     
     </summary>
     
+      <category term="数据库" scheme="https://atwz.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="数据库" scheme="https://atwz.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   

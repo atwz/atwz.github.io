@@ -2,9 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://atwz.github.io/2019/08/16/ai-ti-xiao-zi-dui-shu-ju-ku-de-hong-guan-ren-zhi/</loc>
+    <loc>https://atwz.github.io/2018/09/11/ai-ti-xiao-zi-dui-shu-ju-ku-de-hong-guan-ren-zhi/</loc>
     
-    <lastmod>2019-09-11T02:14:30.280Z</lastmod>
+    <lastmod>2019-09-11T02:18:58.961Z</lastmod>
     
   </url>
   
@@ -30,6 +30,13 @@
   </url>
   
   <url>
+    <loc>https://atwz.github.io/about/index.html</loc>
+    
+    <lastmod>2019-08-21T07:26:13.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://atwz.github.io/archives/index.html</loc>
     
     <lastmod>2019-08-21T07:26:13.000Z</lastmod>
@@ -37,7 +44,7 @@
   </url>
   
   <url>
-    <loc>https://atwz.github.io/about/index.html</loc>
+    <loc>https://atwz.github.io/categories/index.html</loc>
     
     <lastmod>2019-08-21T07:26:13.000Z</lastmod>
     
@@ -51,13 +58,6 @@
   </url>
   
   <url>
-    <loc>https://atwz.github.io/contact/index.html</loc>
-    
-    <lastmod>2019-08-21T07:26:13.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://atwz.github.io/tags/index.html</loc>
     
     <lastmod>2019-08-21T07:26:13.000Z</lastmod>
@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>https://atwz.github.io/categories/index.html</loc>
+    <loc>https://atwz.github.io/contact/index.html</loc>
     
     <lastmod>2019-08-21T07:26:13.000Z</lastmod>
     
