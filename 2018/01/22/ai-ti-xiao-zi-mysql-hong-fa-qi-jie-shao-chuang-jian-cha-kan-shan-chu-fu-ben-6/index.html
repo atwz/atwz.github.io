@@ -4,9 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="string字符串拼接应使用哪种方式比较好, 挨踢小子 Java MySQL">
-    <meta name="description" content="我们所知道的字符串String的拼接有： “+” 、 concat () 方式实现，或者使用StringBuilder、StringBuffer类实现。这几种方式性能的从低到高进行排序。
-性能排序：“+”  &amp;lt;  concat () ">
+    <meta name="keywords" content="【Java面试】String中 + 的实现原理, 挨踢小子 Java MySQL">
+    <meta name="description" content="说起String拼接，大家会想到几个对比：String：常量，不可变，不适合用来字符串拼接，每次都是新创建的对象，消耗较大。StringBuffer：适合用来作字符串拼接StringBuilder：JDK1.5引入，适合用来作字符串拼接，与">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>string字符串拼接应使用哪种方式比较好 | 挨踢小子</title>
+    <title>【Java面试】String中 + 的实现原理 | 挨踢小子</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -218,13 +217,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        string字符串拼接应使用哪种方式比较好
+                        【Java面试】String中 + 的实现原理
                     </div>
                 </div>
             </div>
@@ -370,61 +369,24 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>我们所知道的字符串String的拼接有： “+” 、 concat () 方式实现，或者使用StringBuilder、StringBuffer类实现。这几种方式性能的从低到高进行排序。</p>
-<p><strong>性能排序：</strong><br>“+”  &lt;  concat ()  &lt; StringBuffer &lt; StringBuilder 。<strong>使用”+”性能是最差的，应该避免使用</strong>！！！</p>
-<p>StringBuilder的性能是最高的，StringBuffer和StringBuilder的区别是：StringBuffer是线程安全的，而StringBuilder不是。在高并发的应用中，应该考虑使用StringBuffer! ！它们实现的接口都是一样的，只不过 StringBuffer的很多方法都加上了synchronized关键字修饰。 </p>
-<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * 
- * @author 小钦
- *
- */</span>
-   <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestString</span> <span class="token punctuation">{</span>
-       <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token keyword">int</span> num<span class="token operator">=</span><span class="token number">100000</span><span class="token punctuation">;</span>
-            <span class="token function">addTime</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">concatTime</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">stringBufferTime</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token function">stringBuilderTime</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <h5 id="说起String拼接，大家会想到几个对比："><a href="#说起String拼接，大家会想到几个对比：" class="headerlink" title="说起String拼接，大家会想到几个对比："></a>说起String拼接，大家会想到几个对比：</h5><p><strong>String</strong>：常量，不可变，不适合用来字符串拼接，每次都是新创建的对象，消耗较大。<br><strong>StringBuffer</strong>：适合用来作字符串拼接<br><strong>StringBuilder</strong>：JDK1.5引入，适合用来作字符串拼接，与StringBuffer区别是他不是线程安全的 </p>
+<p>接下来进入正题String”+”拼接底层实现原理<br>曾见过这样一道题：</p>
+<pre class="line-numbers language-java"><code class="language-java">String s<span class="token operator">=</span>null<span class="token punctuation">;</span>
+s<span class="token operator">=</span>s<span class="token operator">+</span><span class="token string">"abc"</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>这道题答对结果的很少，我第一次也没有答对，后来是在编译器上运行之后才知道自己错了。<br>String拼接，有字符串变量参与时，中间会产生StringBuilder对象（JDK1.5之前产生StringBuffer）</p>
+<h5 id="字符串拼接原理："><a href="#字符串拼接原理：" class="headerlink" title="字符串拼接原理："></a>字符串拼接原理：</h5><p>运行时， 两个字符串str1, str2的拼接首先会调用 String.valueOf(obj)，这个Obj为str1，而String.valueOf(Obj)中的实现是return obj == null ? “null” : obj.toString(), 然后产生StringBuilder， 调用的StringBuilder(str1)构造方法， 把StringBuilder初始化，长度为str1.length()+16，并且调用append(str1)！ 接下来调用StringBuilder.append(str2), 把第二个字符串拼接进去， 然后调用StringBuilder.toString返回结果！</p>
+<h5 id="StringBuilder-str-底层调用"><a href="#StringBuilder-str-底层调用" class="headerlink" title="StringBuilder(str) 底层调用"></a>StringBuilder(str) 底层调用</h5><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token function">StringBuilder</span><span class="token punctuation">(</span>String str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">append</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-
-  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">addTime</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">{</span>
-           <span class="token keyword">long</span> start<span class="token operator">=</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-           String str<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">;</span>
-         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                str<span class="token operator">+=</span>i<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-       System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"字符串拼接使用 + 耗时："</span> <span class="token operator">+</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"ms"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token punctuation">}</span>
-
-  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">concatTime</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">{</span>
-      <span class="token keyword">long</span> start<span class="token operator">=</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      String str<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            str<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token punctuation">}</span>
-  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"字符串拼接使用 concat 耗时："</span> <span class="token operator">+</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"ms"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">stringBufferTime</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">{</span>
-      <span class="token keyword">long</span> start<span class="token operator">=</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      StringBuffer str<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">StringBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            str<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token punctuation">}</span>
-  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"字符串拼接使用 StringBuffer 耗时："</span> <span class="token operator">+</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"ms"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">stringBuilderTime</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">{</span>
-      <span class="token keyword">long</span> start<span class="token operator">=</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      StringBuilder str<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            str<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token punctuation">}</span>
-  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"字符串拼接使用 StringBuilder 耗时："</span> <span class="token operator">+</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"ms"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h5 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h5><p>字符串拼接使用 + 耗时：20325ms<br>字符串拼接使用 concat 耗时：12ms<br>字符串拼接使用 StringBuffer 耗时：7ms<br>字符串拼接使用 StringBuilder 耗时：5ms </p>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="StringBuilder-toString-底层调用"><a href="#StringBuilder-toString-底层调用" class="headerlink" title="StringBuilder.toString 底层调用"></a>StringBuilder.toString 底层调用</h5><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token comment" spellcheck="true">// Create a copy, don't share the array</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>所以答案就是：StringBuilder(“null”).append(“abc”).toString();</p>
 
             </div>
             <hr/>
@@ -466,19 +428,19 @@
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2018/01/22/java-ji-chu-super-final-static-guan-jian-zi-de-shi-yong/">
+                <a href="/2018/01/22/mvc-yuan-li-he-mvc-mo-shi-de-you-que-dian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Java基础：super、final、static关键字的使用">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="MVC原理和MVC模式的优缺点">
                         
-                        <span class="card-title">Java基础：super、final、static关键字的使用</span>
+                        <span class="card-title">MVC原理和MVC模式的优缺点</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java基础：super、final、static关键字的使用
+                            MVC原理和MVC模式的优缺点
                         
                     </div>
                     <div class="publish-info">
@@ -489,8 +451,8 @@
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category" target="_blank">
-                                    Java
+                            <a href="/categories/MVC/" class="post-category" target="_blank">
+                                    MVC
                                 </a>
                             
                             
@@ -500,8 +462,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/" target="_blank">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/tags/MVC/" target="_blank">
+                        <span class="chip bg-color">MVC</span>
                     </a>
                     
                 </div>
@@ -515,19 +477,19 @@
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2018/01/22/spring-springmvc-springboot-he-springcloud-gai-nian-de/">
+                <a href="/2018/01/22/ai-ti-xiao-zi-mysql-shu-ju-zi-dian-yuan-ma/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Spring、SpringMVC、 SpringBoot和SpringCloud概念的">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="挨踢小子MySQL数据字典源码">
                         
-                        <span class="card-title">Spring、SpringMVC、 SpringBoot和SpringCloud概念的</span>
+                        <span class="card-title">挨踢小子MySQL数据字典源码</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Spring、SpringMVC、 SpringBoot和SpringCloud概念的
+                            挨踢小子MySQL数据字典源码
                         
                     </div>
                     <div class="publish-info">
@@ -538,8 +500,8 @@
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Spring/" class="post-category" target="_blank">
-                                    Spring
+                            <a href="/categories/MySQL/" class="post-category" target="_blank">
+                                    MySQL
                                 </a>
                             
                             
@@ -549,8 +511,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Spring/" target="_blank">
-                        <span class="chip bg-color">Spring</span>
+                    <a href="/tags/MySQL/" target="_blank">
+                        <span class="chip bg-color">MySQL</span>
                     </a>
                     
                 </div>
