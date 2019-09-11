@@ -4,16 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="挨踢小子SQL常用笔记整理, 挨踢小子 Java MySQL">
-    <meta name="description" content="1、复制数据库表数据操作//微信公众号：关注挨踢小子 
-
-1、如果是整个表复制表达如下：
-
-insert into table1 select  * from table2
-
-2、如果是有选择性的复制数据表达如下：
-
-insert into">
+    <meta name="keywords" content="Spring、SpringMVC、 SpringBoot和SpringCloud概念的, 挨踢小子 Java MySQL">
+    <meta name="description" content="1、SpringSpring 是一个开源框架，起初是为解决企业应用开发的复杂性而创建，但是现在已经不止于企业应用。Spring的核心就是提供一个轻量级的控制反转（IOC）和面向切面（AOP）的容器框架。
+2、Spring MVCSpring">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +14,7 @@ insert into">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>挨踢小子SQL常用笔记整理 | 挨踢小子</title>
+    <title>Spring、SpringMVC、 SpringBoot和SpringCloud概念的 | 挨踢小子</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -288,13 +281,13 @@ insert into">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        挨踢小子SQL常用笔记整理
+                        Spring、SpringMVC、 SpringBoot和SpringCloud概念的
                     </div>
                 </div>
             </div>
@@ -405,8 +398,8 @@ insert into">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/随笔/" target="_blank">
-                                <span class="chip bg-color">随笔</span>
+                            <a href="/tags/Spring/" target="_blank">
+                                <span class="chip bg-color">Spring</span>
                             </a>
                         
                     </div>
@@ -417,8 +410,8 @@ insert into">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/随笔/" class="post-category" target="_blank">
-                                随笔
+                            <a href="/categories/Spring/" class="post-category" target="_blank">
+                                Spring
                             </a>
                         
                     </div>
@@ -445,92 +438,18 @@ insert into">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="1、复制数据库表数据操作"><a href="#1、复制数据库表数据操作" class="headerlink" title="1、复制数据库表数据操作"></a>1、复制数据库表数据操作</h4><pre><code>//微信公众号：关注挨踢小子 
+                <h5 id="1、Spring"><a href="#1、Spring" class="headerlink" title="1、Spring"></a>1、Spring</h5><p>Spring 是一个开源框架，起初是为解决企业应用开发的复杂性而创建，但是现在已经不止于企业应用。<strong>Spring的核心就是提供一个轻量级的控制反转（IOC）和面向切面（AOP）的容器框架。</strong></p>
+<h5 id="2、Spring-MVC"><a href="#2、Spring-MVC" class="headerlink" title="2、Spring MVC"></a>2、Spring MVC</h5><p><strong>Spring MVC可以理解为Spring和MVC结合的一种开发架构</strong>，应用于web层的容器框架，Spring的概念可以参阅上面所述。<strong>MVC是一种将数据业务、显示逻辑和控制逻辑进行分层的设计模式，</strong> 业内常见的mvc开发框架有Struts1、Struts2等。SpringMVC是用于Web程序的通用框架。</p>
+<h5 id="3、SpringBoot"><a href="#3、SpringBoot" class="headerlink" title="3、SpringBoot"></a>3、SpringBoot</h5><p>SpringBoot是用来简化Spring框架应用初始化搭建以及开发的全新框架，比如通过自动化配置省去了大量繁琐的配置文件，因此SpringBoot可以理解成，一个通过简化配置文件来服务于框架的框架。<br>SpringBoot工程使用包括如下特点和优点：</p>
+<p>创建独立的Spring应用程序，简化Maven配置，可以快速构建Spring项目</p>
+<p>一个简单的SpringBoot工程是不需要在pom.xml中手动添加配置的，如果与其它技术合用，比如postMan（文档在线自动生成、开发功能测试的一套工具）、Swagger（文档在线自动生成、开发功能测试的一套工具），则需要在pom.xml中添加依赖，由程序自动添加依赖jar包等配置文件。</p>
+<p>在SpringBoot创建时会自动创建Bootdemo1Application启动类，代表着本工程项目和服务器的启动加载，在springBoot中嵌入有Tomcat服务器的，无需手动部署war文件。</p>
+<h5 id="4、SpringCloud"><a href="#4、SpringCloud" class="headerlink" title="4、SpringCloud"></a>4、SpringCloud</h5><p><strong>SpringCloud是分布式微服务架构下的一站式解决方案，是各个微服务架构落地技术得集合体</strong>，俗称微服务栈解决方案。</p>
+<p> <strong>SpringCloud和SpringBoot之间的关系</strong>:</p>
+<p>1、SpringCloud偏于宏观，SpringBoot偏微观。如果将SpringBoot比作成医院里一个一个的科室，SpringCloud则是将SpringBoot组合起来对外的综合医院。</p>
+<p>2、SpringBoot可以单独使用，不依赖于SpringCloud，而SpringCloud必然依赖于Spring Boot，属于依赖关系。</p>
+<p>3、SpringBoot专注于快速的开发单个个体微服务。SpringCloud是关注于全局的微服务协调整理治理框架，它将SpringBoot开发的一个个单个微服务整合并管理起来，为各个微服务之间提供配置管理、服务发现、断路器、路由、微代理、事件总线、全局锁、决策竞选、分布式会话等等集成服务。 </p>
 
-1、如果是整个表复制表达如下：
-
-insert into table1 select  * from table2
-
-2、如果是有选择性的复制数据表达如下：
-
-insert into table1(column1,column2,column3...) 
-select column1,column2,colunm3...from table2
-
-3、一个数据库中的表中的数据复制到另一个数据库中的一个表，使用方法如下：
-
-insert into 数据库A.dbo.table1(col1,col2,col3...) 
-select col1,col2,col3... from 数据库B.dbo.table2 
-
-4、直接复制现有表重命名
-
-CREATE  TABLE 表名  AS SELECT 语句；</code></pre><h4 id="2、sql的子查询可以放到查询字段之中"><a href="#2、sql的子查询可以放到查询字段之中" class="headerlink" title="2、sql的子查询可以放到查询字段之中"></a>2、sql的子查询可以放到查询字段之中</h4><pre><code>//微信公众号：关注挨踢小子 
-select  name,age,(select date from tableB)
-from tableA  where age=&quot;12&quot;；</code></pre><h4 id="3、一张表中两个字段值互换（重点思想）"><a href="#3、一张表中两个字段值互换（重点思想）" class="headerlink" title="3、一张表中两个字段值互换（重点思想）"></a>3、一张表中两个字段值互换（重点思想）</h4><pre><code>//微信公众号：关注挨踢小子 
-update table a, table b 
-set a.filed1= b.field2, a.field2= b.field1
-where a.id = b.id</code></pre><h4 id="4、实现数据库两列数据的上下移动操作"><a href="#4、实现数据库两列数据的上下移动操作" class="headerlink" title="4、实现数据库两列数据的上下移动操作"></a>4、实现数据库两列数据的上下移动操作</h4><pre><code>//微信公众号：关注挨踢小子 
-update test set priority=   
-
-(case when id=1  then    
-
-(select priority from test where id=2)    
-
-when id=2 then    
-
-(select priority from test where id=1) end)   
-
- where id=1 or id=2; </code></pre><h4 id="5、mysql合并字符串"><a href="#5、mysql合并字符串" class="headerlink" title="5、mysql合并字符串"></a>5、mysql合并字符串</h4><pre><code>//微信公众号：关注挨踢小子 
-concat(string1,string2,string3,…)
-
-select concat( &#39;1&#39;, &#39;01&#39;,&#39;02&#39;)
-
-// 10102  
-
-concat_ws(separator,str1,str2,...)
-
-select concat_ws(&#39;-&#39;,&#39;1&#39;,&#39;2&#39;,&#39;3&#39;)
-
-// 1-2-3
-group_concat()
-group_concat( 
-[distinct] 要连接的字段 
-[order by 排序字段 asc/desc ] 
-[separator &#39;分隔符&#39;] 
-)
-
-// 例如：
-SELECT  group_concat(content  ORDER BY id DESC separator &#39;-&#39;) from t_noteinfo </code></pre><h4 id="6、删除重复数据，只保留最小ID编号"><a href="#6、删除重复数据，只保留最小ID编号" class="headerlink" title="6、删除重复数据，只保留最小ID编号"></a>6、删除重复数据，只保留最小ID编号</h4><pre><code>delete tablename where id not in(select min(id) 
-from tablename group by name,………………)</code></pre><h4 id="7、两张关联表，删除主表中已经在副表中没有的信息"><a href="#7、两张关联表，删除主表中已经在副表中没有的信息" class="headerlink" title="7、两张关联表，删除主表中已经在副表中没有的信息"></a>7、两张关联表，删除主表中已经在副表中没有的信息</h4><pre><code>delete from info where not exists 
-
-(select * from infobz where info.infid=infobz.infid)</code></pre><h4 id="8、日程安排提前五分钟提醒（日期操作）"><a href="#8、日程安排提前五分钟提醒（日期操作）" class="headerlink" title="8、日程安排提前五分钟提醒（日期操作）"></a>8、日程安排提前五分钟提醒（日期操作）</h4><pre><code>select * from 日程安排 
-
-where datediff(&#39;minute&#39;,f 开始时间,getdate())&gt;5</code></pre><h4 id="9、查询出每门课都大于90-分的学生姓名"><a href="#9、查询出每门课都大于90-分的学生姓名" class="headerlink" title="9、查询出每门课都大于90 分的学生姓名"></a>9、查询出每门课都大于90 分的学生姓名</h4><pre><code>select name from table group by name having min(fenshu)&gt;90</code></pre><h4 id="10、数据结构转换形式"><a href="#10、数据结构转换形式" class="headerlink" title="10、数据结构转换形式"></a>10、数据结构转换形式</h4><pre><code>//微信公众号：关注挨踢小子
-原表数据结构
- year   month amount
- 1991   1     1.1
- 1991   2     1.2
- 1991   3     1.3
- 1991   4     1.4
- 1992   1     2.1
- 1992   2     2.2
- 1992   3     2.3
- 1992   4     2.4
-
-查成这样一个结果
-
- year m1   m2   m3   m4
- 1991 1.1 1.2 1.3 1.4
- 1992 2.1 2.2 2.3 2.4
-
-select year, 
-    (select amount from   aaa m where month=1   and m.year=aaa.year) as m1,
-    (select amount from   aaa m where month=2   and m.year=aaa.year) as m2,
-    (select amount from   aaa m where month=3   and m.year=aaa.year) as m3,
-    (select amount from   aaa m where month=4   and m.year=aaa.year) as m4
-from aaa   group by year</code></pre><h4 id="11、find-in-set笔记学习（历史文章有详解，此处略）"><a href="#11、find-in-set笔记学习（历史文章有详解，此处略）" class="headerlink" title="11、find_in_set笔记学习（历史文章有详解，此处略）"></a>11、find_in_set笔记学习（历史文章有详解，此处略）</h4><pre><code>SELECT t.dept_id FROM sys_dept t 
-
-WHERE FIND_IN_SET (102,ancestors) </code></pre><h4 id="12、explain查看sql的具体的执行计划-历史文章有详解，此处略"><a href="#12、explain查看sql的具体的执行计划-历史文章有详解，此处略" class="headerlink" title="12、explain查看sql的具体的执行计划(历史文章有详解，此处略)"></a>12、explain查看sql的具体的执行计划(历史文章有详解，此处略)</h4><pre><code>//微信公众号：关注挨踢小子
-explain select * from tablename</code></pre>
             </div>
             <hr/>
 
@@ -688,9 +607,9 @@ explain select * from tablename</code></pre>
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《挨踢小子SQL常用笔记整理》
+                    《Spring、SpringMVC、 SpringBoot和SpringCloud概念的》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2018/01/22/ai-ti-xiao-zi-sql-chang-yong-bi-ji-zheng-li/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2018/01/22/spring-springmvc-springboot-he-springcloud-gai-nian-de/" property="cc:attributionName"
                rel="cc:attributionURL">
                 挨踢
             </a> 采用
@@ -734,19 +653,19 @@ explain select * from tablename</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2018/01/22/java-ji-chu-super-final-static-guan-jian-zi-de-shi-yong/">
+                <a href="/2018/01/22/hashmap-chang-yong-fang-fa-di-ceng-jie-gou-kuo-rong-ji-zhi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Java基础：super、final、static关键字的使用">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="HashMap（常用方法、底层结构、扩容机制）">
                         
-                        <span class="card-title">Java基础：super、final、static关键字的使用</span>
+                        <span class="card-title">HashMap（常用方法、底层结构、扩容机制）</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java基础：super、final、static关键字的使用
+                            HashMap（常用方法、底层结构、扩容机制）
                         
                     </div>
                     <div class="publish-info">
@@ -757,8 +676,8 @@ explain select * from tablename</code></pre>
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category" target="_blank">
-                                    Java
+                            <a href="/categories/HashMap/" class="post-category" target="_blank">
+                                    HashMap
                                 </a>
                             
                             
@@ -780,22 +699,22 @@ explain select * from tablename</code></pre>
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2018/01/22/ai-ti-xiao-zi-sql-chang-yong-bi-ji-zheng-li/">
+                <a href="/2018/01/22/string-zi-fu-chuan-pin-jie-ying-shi-yong-na-chong-fang-shi-bi-jiao-hao/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="挨踢小子SQL常用笔记整理">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="string字符串拼接应使用哪种方式比较好">
                         
-                        <span class="card-title">挨踢小子SQL常用笔记整理</span>
+                        <span class="card-title">string字符串拼接应使用哪种方式比较好</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            挨踢小子特別整理的12道經典SQL語句，
+                            string字符串拼接应使用哪种方式比较好
                         
                     </div>
                     <div class="publish-info">
@@ -806,20 +725,19 @@ explain select * from tablename</code></pre>
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/随笔/" class="post-category" target="_blank">
-                                    随笔
+                            <a href="/categories/String/" class="post-category" target="_blank">
+                                    String
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/随笔/" target="_blank">
-                        <span class="chip bg-color">随笔</span>
+                    <a href="/tags/Java/" target="_blank">
+                        <span class="chip bg-color">Java</span>
                     </a>
                     
                 </div>

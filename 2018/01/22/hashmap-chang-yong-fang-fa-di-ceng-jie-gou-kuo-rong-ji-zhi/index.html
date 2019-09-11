@@ -4,16 +4,10 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="挨踢小子SQL常用笔记整理, 挨踢小子 Java MySQL">
-    <meta name="description" content="1、复制数据库表数据操作//微信公众号：关注挨踢小子 
-
-1、如果是整个表复制表达如下：
-
-insert into table1 select  * from table2
-
-2、如果是有选择性的复制数据表达如下：
-
-insert into">
+    <meta name="keywords" content="HashMap（常用方法、底层结构、扩容机制）, 挨踢小子 Java MySQL">
+    <meta name="description" content="1.实现原理：*HashMap的底层实现是一个哈希表即数组+链表；
+*HashMap初始容量大小16，扩容因子为0.75，扩容倍数为2；
+HashMap本质是一个一定长度的数组，数组中存放的是链表。当向HashMap中put(key,val">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +15,7 @@ insert into">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>挨踢小子SQL常用笔记整理 | 挨踢小子</title>
+    <title>HashMap（常用方法、底层结构、扩容机制） | 挨踢小子</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -288,13 +282,13 @@ insert into">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        挨踢小子SQL常用笔记整理
+                        HashMap（常用方法、底层结构、扩容机制）
                     </div>
                 </div>
             </div>
@@ -405,8 +399,8 @@ insert into">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/随笔/" target="_blank">
-                                <span class="chip bg-color">随笔</span>
+                            <a href="/tags/Java/" target="_blank">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
                     </div>
@@ -417,8 +411,8 @@ insert into">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/随笔/" class="post-category" target="_blank">
-                                随笔
+                            <a href="/categories/HashMap/" class="post-category" target="_blank">
+                                HashMap
                             </a>
                         
                     </div>
@@ -445,92 +439,70 @@ insert into">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="1、复制数据库表数据操作"><a href="#1、复制数据库表数据操作" class="headerlink" title="1、复制数据库表数据操作"></a>1、复制数据库表数据操作</h4><pre><code>//微信公众号：关注挨踢小子 
+                <h6 id="1-实现原理："><a href="#1-实现原理：" class="headerlink" title="1.实现原理："></a>1.实现原理：</h6><p>*HashMap的底层实现是一个哈希表即数组+链表；</p>
+<p>*HashMap初始容量大小16，扩容因子为0.75，扩容倍数为2；</p>
+<p>HashMap本质是一个一定长度的数组，数组中存放的是链表。<br><img src="https://img-blog.csdnimg.cn/20190910095846460.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MTI2MzU3,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>当向HashMap中put(key,value)时，会首先通过hash算法计算出存放到数组中的位置，比如位置索引为i，将其放入到Entry[i]中，如果这个位置上面已经有元素了，那么就将新加入的元素放在链表的头上，最先加入的元素在链表尾。比如，第一个键值对A进来，通过计算其key的hash得到的index=0，记做:Entry[0] = A。一会后又进来一个键值对B，通过计算其index也等于0，现在怎么办？HashMap会这样做:B.next = A,Entry[0] = B,如果又进来C,index也等于0,那么C.next = B,Entry[0] = C；这样我们发现index=0的地方其实存取了A,B,C三个键值对,他们通过next这个属性链接在一起,也就是说数组中存储的是最后插入的元素。 </p>
+<p><img src="https://img-blog.csdnimg.cn/20190910095906625.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM3MTI2MzU3,size_8,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>HashMap的get(key)方法是：首先计算key的hashcode，找到数组中对应位置的某一元素，然后通过key的equals方法在对应位置的链表中找到需要的元素。从这里我们可以想象得到，如果每个位置上的链表只有一个元素，那么hashmap的get效率将是最高的。所以我们需要让这个hash算法尽可能的将元素平均的放在数组中每个位置上。 </p>
+<h6 id="2-扩容机制："><a href="#2-扩容机制：" class="headerlink" title="2.扩容机制："></a>2.扩容机制：</h6><p>当HashMap中的元素越来越多的时候，hash冲突的几率也就越来越高，因为数组的长度是固定的。所以为了提高查询的效率，就要对HashMap的数组进行扩容。</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> DEFAULT_INITIAL_CAPACITY <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">4</span><span class="token punctuation">;</span>      <span class="token comment" spellcheck="true">// HashMap初始容量大小(16) </span>
 
-1、如果是整个表复制表达如下：
+<span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> MAXIMUM_CAPACITY <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">30</span><span class="token punctuation">;</span>               <span class="token comment" spellcheck="true">// HashMap最大容量</span>
 
-insert into table1 select  * from table2
+<span class="token keyword">transient</span> <span class="token keyword">int</span> size<span class="token punctuation">;</span>                                       <span class="token comment" spellcheck="true">// The number of key-value mappings contained in this map</span>
 
-2、如果是有选择性的复制数据表达如下：
+<span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">float</span> DEFAULT_LOAD_FACTOR <span class="token operator">=</span> <span class="token number">0.75f</span><span class="token punctuation">;</span>          <span class="token comment" spellcheck="true">// 负载因子</span>
 
-insert into table1(column1,column2,column3...) 
-select column1,column2,colunm3...from table2
+HashMap的容量size乘以负载因子<span class="token punctuation">[</span>默认<span class="token number">0.75</span><span class="token punctuation">]</span> <span class="token operator">=</span> threshold<span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">// threshold即为开始扩容的临界值</span>
 
-3、一个数据库中的表中的数据复制到另一个数据库中的一个表，使用方法如下：
+<span class="token keyword">transient</span> Entry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span> table <span class="token operator">=</span> <span class="token punctuation">(</span>Entry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> EMPTY_TABLE<span class="token punctuation">;</span>    <span class="token comment" spellcheck="true">// HashMap的基本构成Entry数组</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>当HashMap中的元素个数超过数组大小(数组总大小length,不是数组中个数size)<em>loadFactor时，就会进行数组扩容，loadFactor的默认值为0.75，这是一个折中的取值。也就是说，默认情况下，数组大小为16，那么当HashMap中元素个数超过16</em>0.75=12（这个值就是代码中的threshold值，也叫做临界值）的时候，就把数组的大小扩展为 2*16=32，即扩大一倍，然后重新计算每个元素在数组中的位置。</p>
+<p>0.75这个值成为负载因子，那么为什么负载因子为0.75呢？这是通过大量实验统计得出来的，如果过小，比如0.5，那么当存放的元素超过一半时就进行扩容，会造成资源的浪费；如果过大，比如1，那么当元素满的时候才进行扩容，会使get,put操作的碰撞几率增加。<br>HashMap中扩容是调用resize()方法，方法源码： </p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">void</span> <span class="token function">resize</span><span class="token punctuation">(</span><span class="token keyword">int</span> newCapacity<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Entry<span class="token punctuation">[</span><span class="token punctuation">]</span> oldTable <span class="token operator">=</span> table<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> oldCapacity <span class="token operator">=</span> oldTable<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//如果当前的数组长度已经达到最大值，则不在进行调整</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>oldCapacity <span class="token operator">==</span> MAXIMUM_CAPACITY<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        threshold <span class="token operator">=</span> Integer<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">//根据传入参数的长度定义新的数组</span>
+    Entry<span class="token punctuation">[</span><span class="token punctuation">]</span> newTable <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Entry</span><span class="token punctuation">[</span>newCapacity<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//按照新的规则，将旧数组中的元素转移到新数组中</span>
+    <span class="token function">transfer</span><span class="token punctuation">(</span>newTable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    table <span class="token operator">=</span> newTable<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//更新临界值</span>
+    threshold <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">(</span>newCapacity <span class="token operator">*</span> loadFactor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">//旧数组中元素往新数组中迁移</span>
+<span class="token keyword">void</span> <span class="token function">transfer</span><span class="token punctuation">(</span>Entry<span class="token punctuation">[</span><span class="token punctuation">]</span> newTable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">//旧数组</span>
+    Entry<span class="token punctuation">[</span><span class="token punctuation">]</span> src <span class="token operator">=</span> table<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//新数组长度</span>
+    <span class="token keyword">int</span> newCapacity <span class="token operator">=</span> newTable<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">//遍历旧数组</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> src<span class="token punctuation">.</span>length<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Entry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span> e <span class="token operator">=</span> src<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>e <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            src<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> null<span class="token punctuation">;</span>
+            <span class="token keyword">do</span> <span class="token punctuation">{</span>
+                Entry<span class="token operator">&lt;</span>K<span class="token punctuation">,</span>V<span class="token operator">></span> next <span class="token operator">=</span> e<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
+                <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token function">indexFor</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>hash<span class="token punctuation">,</span> newCapacity<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//放在新数组中的index位置</span>
+                e<span class="token punctuation">.</span>next <span class="token operator">=</span> newTable<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//实现链表结构，新加入的放在链头，之前的的数据放在链尾</span>
+                newTable<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> e<span class="token punctuation">;</span>
+                e <span class="token operator">=</span> next<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>e <span class="token operator">!=</span> null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>可以看到HashMap不是无限扩容的，当达到了实现预定的MAXIMUM_CAPACITY，就不再进行扩容。</p>
+<h6 id="3-Hashmap为什么大小是2的幂次？"><a href="#3-Hashmap为什么大小是2的幂次？" class="headerlink" title="3.Hashmap为什么大小是2的幂次？"></a>3.Hashmap为什么大小是2的幂次？</h6><p>因为在计算元素该存放的位置的时候，用到的算法是将元素的hashcode与当前map长度-1进行与运算。源码：</p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">indexFor</span><span class="token punctuation">(</span><span class="token keyword">int</span> h<span class="token punctuation">,</span> <span class="token keyword">int</span> length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// assert Integer.bitCount(length) == 1 : "length must be a non-zero power of 2";</span>
+    <span class="token keyword">return</span> h <span class="token operator">&amp;</span> <span class="token punctuation">(</span>length<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果map长度为2的幂次，那长度-1的二进制一定为11111…这种形式，进行与运算就看元素的hashcode，但是如果map的长度不是2的幂次，比如为15，那长度-1就是14，二进制为1110，无论与谁相与最后一位一定是0，0001，0011，0101，1001，1011，0111，1101这几个位置就永远都不能存放元素了，空间浪费相当大。也增加了添加元素是发生碰撞的机会。减慢了查询效率。所以Hashmap的大小是2的幂次。 </p>
+<h6 id="4-get方法实现"><a href="#4-get方法实现" class="headerlink" title="4.get方法实现"></a>4.get方法实现</h6><p>Hashmap get一个元素是，是计算出key的hashcode找到对应的entry，这个时间复杂度为O(1)，然后通过对entry中存放的元素key进行equal比较，找出元素，这个的时间复杂度为O(m)，m为entry的长度。</p>
 
-insert into 数据库A.dbo.table1(col1,col2,col3...) 
-select col1,col2,col3... from 数据库B.dbo.table2 
-
-4、直接复制现有表重命名
-
-CREATE  TABLE 表名  AS SELECT 语句；</code></pre><h4 id="2、sql的子查询可以放到查询字段之中"><a href="#2、sql的子查询可以放到查询字段之中" class="headerlink" title="2、sql的子查询可以放到查询字段之中"></a>2、sql的子查询可以放到查询字段之中</h4><pre><code>//微信公众号：关注挨踢小子 
-select  name,age,(select date from tableB)
-from tableA  where age=&quot;12&quot;；</code></pre><h4 id="3、一张表中两个字段值互换（重点思想）"><a href="#3、一张表中两个字段值互换（重点思想）" class="headerlink" title="3、一张表中两个字段值互换（重点思想）"></a>3、一张表中两个字段值互换（重点思想）</h4><pre><code>//微信公众号：关注挨踢小子 
-update table a, table b 
-set a.filed1= b.field2, a.field2= b.field1
-where a.id = b.id</code></pre><h4 id="4、实现数据库两列数据的上下移动操作"><a href="#4、实现数据库两列数据的上下移动操作" class="headerlink" title="4、实现数据库两列数据的上下移动操作"></a>4、实现数据库两列数据的上下移动操作</h4><pre><code>//微信公众号：关注挨踢小子 
-update test set priority=   
-
-(case when id=1  then    
-
-(select priority from test where id=2)    
-
-when id=2 then    
-
-(select priority from test where id=1) end)   
-
- where id=1 or id=2; </code></pre><h4 id="5、mysql合并字符串"><a href="#5、mysql合并字符串" class="headerlink" title="5、mysql合并字符串"></a>5、mysql合并字符串</h4><pre><code>//微信公众号：关注挨踢小子 
-concat(string1,string2,string3,…)
-
-select concat( &#39;1&#39;, &#39;01&#39;,&#39;02&#39;)
-
-// 10102  
-
-concat_ws(separator,str1,str2,...)
-
-select concat_ws(&#39;-&#39;,&#39;1&#39;,&#39;2&#39;,&#39;3&#39;)
-
-// 1-2-3
-group_concat()
-group_concat( 
-[distinct] 要连接的字段 
-[order by 排序字段 asc/desc ] 
-[separator &#39;分隔符&#39;] 
-)
-
-// 例如：
-SELECT  group_concat(content  ORDER BY id DESC separator &#39;-&#39;) from t_noteinfo </code></pre><h4 id="6、删除重复数据，只保留最小ID编号"><a href="#6、删除重复数据，只保留最小ID编号" class="headerlink" title="6、删除重复数据，只保留最小ID编号"></a>6、删除重复数据，只保留最小ID编号</h4><pre><code>delete tablename where id not in(select min(id) 
-from tablename group by name,………………)</code></pre><h4 id="7、两张关联表，删除主表中已经在副表中没有的信息"><a href="#7、两张关联表，删除主表中已经在副表中没有的信息" class="headerlink" title="7、两张关联表，删除主表中已经在副表中没有的信息"></a>7、两张关联表，删除主表中已经在副表中没有的信息</h4><pre><code>delete from info where not exists 
-
-(select * from infobz where info.infid=infobz.infid)</code></pre><h4 id="8、日程安排提前五分钟提醒（日期操作）"><a href="#8、日程安排提前五分钟提醒（日期操作）" class="headerlink" title="8、日程安排提前五分钟提醒（日期操作）"></a>8、日程安排提前五分钟提醒（日期操作）</h4><pre><code>select * from 日程安排 
-
-where datediff(&#39;minute&#39;,f 开始时间,getdate())&gt;5</code></pre><h4 id="9、查询出每门课都大于90-分的学生姓名"><a href="#9、查询出每门课都大于90-分的学生姓名" class="headerlink" title="9、查询出每门课都大于90 分的学生姓名"></a>9、查询出每门课都大于90 分的学生姓名</h4><pre><code>select name from table group by name having min(fenshu)&gt;90</code></pre><h4 id="10、数据结构转换形式"><a href="#10、数据结构转换形式" class="headerlink" title="10、数据结构转换形式"></a>10、数据结构转换形式</h4><pre><code>//微信公众号：关注挨踢小子
-原表数据结构
- year   month amount
- 1991   1     1.1
- 1991   2     1.2
- 1991   3     1.3
- 1991   4     1.4
- 1992   1     2.1
- 1992   2     2.2
- 1992   3     2.3
- 1992   4     2.4
-
-查成这样一个结果
-
- year m1   m2   m3   m4
- 1991 1.1 1.2 1.3 1.4
- 1992 2.1 2.2 2.3 2.4
-
-select year, 
-    (select amount from   aaa m where month=1   and m.year=aaa.year) as m1,
-    (select amount from   aaa m where month=2   and m.year=aaa.year) as m2,
-    (select amount from   aaa m where month=3   and m.year=aaa.year) as m3,
-    (select amount from   aaa m where month=4   and m.year=aaa.year) as m4
-from aaa   group by year</code></pre><h4 id="11、find-in-set笔记学习（历史文章有详解，此处略）"><a href="#11、find-in-set笔记学习（历史文章有详解，此处略）" class="headerlink" title="11、find_in_set笔记学习（历史文章有详解，此处略）"></a>11、find_in_set笔记学习（历史文章有详解，此处略）</h4><pre><code>SELECT t.dept_id FROM sys_dept t 
-
-WHERE FIND_IN_SET (102,ancestors) </code></pre><h4 id="12、explain查看sql的具体的执行计划-历史文章有详解，此处略"><a href="#12、explain查看sql的具体的执行计划-历史文章有详解，此处略" class="headerlink" title="12、explain查看sql的具体的执行计划(历史文章有详解，此处略)"></a>12、explain查看sql的具体的执行计划(历史文章有详解，此处略)</h4><pre><code>//微信公众号：关注挨踢小子
-explain select * from tablename</code></pre>
             </div>
             <hr/>
 
@@ -688,9 +660,9 @@ explain select * from tablename</code></pre>
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《挨踢小子SQL常用笔记整理》
+                    《HashMap（常用方法、底层结构、扩容机制）》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2018/01/22/ai-ti-xiao-zi-sql-chang-yong-bi-ji-zheng-li/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2018/01/22/hashmap-chang-yong-fang-fa-di-ceng-jie-gou-kuo-rong-ji-zhi/" property="cc:attributionName"
                rel="cc:attributionURL">
                 挨踢
             </a> 采用
@@ -734,19 +706,19 @@ explain select * from tablename</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2018/01/22/java-ji-chu-super-final-static-guan-jian-zi-de-shi-yong/">
+                <a href="/2018/01/22/shi-me-shi-dui-zhan-dui-zhan-dui-lie-ta-men-de-qu-bie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Java基础：super、final、static关键字的使用">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="什么是“堆”,"栈","堆栈","队列",它们的区别">
                         
-                        <span class="card-title">Java基础：super、final、static关键字的使用</span>
+                        <span class="card-title">什么是“堆”,"栈","堆栈","队列",它们的区别</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java基础：super、final、static关键字的使用
+                            什么是“堆”,"栈","堆栈","队列",它们的区别
                         
                     </div>
                     <div class="publish-info">
@@ -757,8 +729,8 @@ explain select * from tablename</code></pre>
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category" target="_blank">
-                                    Java
+                            <a href="/categories/MySQL/" class="post-category" target="_blank">
+                                    MySQL
                                 </a>
                             
                             
@@ -768,8 +740,8 @@ explain select * from tablename</code></pre>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Java/" target="_blank">
-                        <span class="chip bg-color">Java</span>
+                    <a href="/tags/MySQL/" target="_blank">
+                        <span class="chip bg-color">MySQL</span>
                     </a>
                     
                 </div>
@@ -780,22 +752,22 @@ explain select * from tablename</code></pre>
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2018/01/22/ai-ti-xiao-zi-sql-chang-yong-bi-ji-zheng-li/">
+                <a href="/2018/01/22/spring-springmvc-springboot-he-springcloud-gai-nian-de/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="挨踢小子SQL常用笔记整理">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Spring、SpringMVC、 SpringBoot和SpringCloud概念的">
                         
-                        <span class="card-title">挨踢小子SQL常用笔记整理</span>
+                        <span class="card-title">Spring、SpringMVC、 SpringBoot和SpringCloud概念的</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            挨踢小子特別整理的12道經典SQL語句，
+                            Spring、SpringMVC、 SpringBoot和SpringCloud概念的
                         
                     </div>
                     <div class="publish-info">
@@ -806,20 +778,19 @@ explain select * from tablename</code></pre>
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/随笔/" class="post-category" target="_blank">
-                                    随笔
+                            <a href="/categories/Spring/" class="post-category" target="_blank">
+                                    Spring
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/随笔/" target="_blank">
-                        <span class="chip bg-color">随笔</span>
+                    <a href="/tags/Spring/" target="_blank">
+                        <span class="chip bg-color">Spring</span>
                     </a>
                     
                 </div>

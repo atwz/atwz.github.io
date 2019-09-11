@@ -4,16 +4,9 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="挨踢小子SQL常用笔记整理, 挨踢小子 Java MySQL">
-    <meta name="description" content="1、复制数据库表数据操作//微信公众号：关注挨踢小子 
-
-1、如果是整个表复制表达如下：
-
-insert into table1 select  * from table2
-
-2、如果是有选择性的复制数据表达如下：
-
-insert into">
+    <meta name="keywords" content="string字符串拼接应使用哪种方式比较好, 挨踢小子 Java MySQL">
+    <meta name="description" content="我们所知道的字符串String的拼接有： “+” 、 concat () 方式实现，或者使用StringBuilder、StringBuffer类实现。这几种方式性能的从低到高进行排序。
+性能排序：“+”  &amp;lt;  concat () ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +14,7 @@ insert into">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>挨踢小子SQL常用笔记整理 | 挨踢小子</title>
+    <title>string字符串拼接应使用哪种方式比较好 | 挨踢小子</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -288,13 +281,13 @@ insert into">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        挨踢小子SQL常用笔记整理
+                        string字符串拼接应使用哪种方式比较好
                     </div>
                 </div>
             </div>
@@ -405,8 +398,8 @@ insert into">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/随笔/" target="_blank">
-                                <span class="chip bg-color">随笔</span>
+                            <a href="/tags/Java/" target="_blank">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
                     </div>
@@ -417,8 +410,8 @@ insert into">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/随笔/" class="post-category" target="_blank">
-                                随笔
+                            <a href="/categories/String/" class="post-category" target="_blank">
+                                String
                             </a>
                         
                     </div>
@@ -445,92 +438,62 @@ insert into">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="1、复制数据库表数据操作"><a href="#1、复制数据库表数据操作" class="headerlink" title="1、复制数据库表数据操作"></a>1、复制数据库表数据操作</h4><pre><code>//微信公众号：关注挨踢小子 
+                <p>我们所知道的字符串String的拼接有： “+” 、 concat () 方式实现，或者使用StringBuilder、StringBuffer类实现。这几种方式性能的从低到高进行排序。</p>
+<p><strong>性能排序：</strong><br>“+”  &lt;  concat ()  &lt; StringBuffer &lt; StringBuilder 。<strong>使用”+”性能是最差的，应该避免使用</strong>！！！</p>
+<p>StringBuilder的性能是最高的，StringBuffer和StringBuilder的区别是：StringBuffer是线程安全的，而StringBuilder不是。在高并发的应用中，应该考虑使用StringBuffer! ！它们实现的接口都是一样的，只不过 StringBuffer的很多方法都加上了synchronized关键字修饰。 </p>
+<pre class="line-numbers language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * 
+ * @author 小钦
+ *
+ */</span>
+   <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestString</span> <span class="token punctuation">{</span>
+       <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> num<span class="token operator">=</span><span class="token number">100000</span><span class="token punctuation">;</span>
+            <span class="token function">addTime</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">concatTime</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">stringBufferTime</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">stringBuilderTime</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-1、如果是整个表复制表达如下：
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">addTime</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">{</span>
+           <span class="token keyword">long</span> start<span class="token operator">=</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           String str<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">;</span>
+         <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                str<span class="token operator">+=</span>i<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+       System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"字符串拼接使用 + 耗时："</span> <span class="token operator">+</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"ms"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
 
-insert into table1 select  * from table2
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">concatTime</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">long</span> start<span class="token operator">=</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      String str<span class="token operator">=</span><span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            str<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"字符串拼接使用 concat 耗时："</span> <span class="token operator">+</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"ms"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-2、如果是有选择性的复制数据表达如下：
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">stringBufferTime</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">long</span> start<span class="token operator">=</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      StringBuffer str<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">StringBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            str<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"字符串拼接使用 StringBuffer 耗时："</span> <span class="token operator">+</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"ms"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-insert into table1(column1,column2,column3...) 
-select column1,column2,colunm3...from table2
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">stringBuilderTime</span><span class="token punctuation">(</span><span class="token keyword">int</span> num<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">long</span> start<span class="token operator">=</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      StringBuilder str<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> num<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            str<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"字符串拼接使用 StringBuilder 耗时："</span> <span class="token operator">+</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span><span class="token function">currentTimeMillis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">-</span>start<span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"ms"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-3、一个数据库中的表中的数据复制到另一个数据库中的一个表，使用方法如下：
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h5><p>字符串拼接使用 + 耗时：20325ms<br>字符串拼接使用 concat 耗时：12ms<br>字符串拼接使用 StringBuffer 耗时：7ms<br>字符串拼接使用 StringBuilder 耗时：5ms </p>
 
-insert into 数据库A.dbo.table1(col1,col2,col3...) 
-select col1,col2,col3... from 数据库B.dbo.table2 
-
-4、直接复制现有表重命名
-
-CREATE  TABLE 表名  AS SELECT 语句；</code></pre><h4 id="2、sql的子查询可以放到查询字段之中"><a href="#2、sql的子查询可以放到查询字段之中" class="headerlink" title="2、sql的子查询可以放到查询字段之中"></a>2、sql的子查询可以放到查询字段之中</h4><pre><code>//微信公众号：关注挨踢小子 
-select  name,age,(select date from tableB)
-from tableA  where age=&quot;12&quot;；</code></pre><h4 id="3、一张表中两个字段值互换（重点思想）"><a href="#3、一张表中两个字段值互换（重点思想）" class="headerlink" title="3、一张表中两个字段值互换（重点思想）"></a>3、一张表中两个字段值互换（重点思想）</h4><pre><code>//微信公众号：关注挨踢小子 
-update table a, table b 
-set a.filed1= b.field2, a.field2= b.field1
-where a.id = b.id</code></pre><h4 id="4、实现数据库两列数据的上下移动操作"><a href="#4、实现数据库两列数据的上下移动操作" class="headerlink" title="4、实现数据库两列数据的上下移动操作"></a>4、实现数据库两列数据的上下移动操作</h4><pre><code>//微信公众号：关注挨踢小子 
-update test set priority=   
-
-(case when id=1  then    
-
-(select priority from test where id=2)    
-
-when id=2 then    
-
-(select priority from test where id=1) end)   
-
- where id=1 or id=2; </code></pre><h4 id="5、mysql合并字符串"><a href="#5、mysql合并字符串" class="headerlink" title="5、mysql合并字符串"></a>5、mysql合并字符串</h4><pre><code>//微信公众号：关注挨踢小子 
-concat(string1,string2,string3,…)
-
-select concat( &#39;1&#39;, &#39;01&#39;,&#39;02&#39;)
-
-// 10102  
-
-concat_ws(separator,str1,str2,...)
-
-select concat_ws(&#39;-&#39;,&#39;1&#39;,&#39;2&#39;,&#39;3&#39;)
-
-// 1-2-3
-group_concat()
-group_concat( 
-[distinct] 要连接的字段 
-[order by 排序字段 asc/desc ] 
-[separator &#39;分隔符&#39;] 
-)
-
-// 例如：
-SELECT  group_concat(content  ORDER BY id DESC separator &#39;-&#39;) from t_noteinfo </code></pre><h4 id="6、删除重复数据，只保留最小ID编号"><a href="#6、删除重复数据，只保留最小ID编号" class="headerlink" title="6、删除重复数据，只保留最小ID编号"></a>6、删除重复数据，只保留最小ID编号</h4><pre><code>delete tablename where id not in(select min(id) 
-from tablename group by name,………………)</code></pre><h4 id="7、两张关联表，删除主表中已经在副表中没有的信息"><a href="#7、两张关联表，删除主表中已经在副表中没有的信息" class="headerlink" title="7、两张关联表，删除主表中已经在副表中没有的信息"></a>7、两张关联表，删除主表中已经在副表中没有的信息</h4><pre><code>delete from info where not exists 
-
-(select * from infobz where info.infid=infobz.infid)</code></pre><h4 id="8、日程安排提前五分钟提醒（日期操作）"><a href="#8、日程安排提前五分钟提醒（日期操作）" class="headerlink" title="8、日程安排提前五分钟提醒（日期操作）"></a>8、日程安排提前五分钟提醒（日期操作）</h4><pre><code>select * from 日程安排 
-
-where datediff(&#39;minute&#39;,f 开始时间,getdate())&gt;5</code></pre><h4 id="9、查询出每门课都大于90-分的学生姓名"><a href="#9、查询出每门课都大于90-分的学生姓名" class="headerlink" title="9、查询出每门课都大于90 分的学生姓名"></a>9、查询出每门课都大于90 分的学生姓名</h4><pre><code>select name from table group by name having min(fenshu)&gt;90</code></pre><h4 id="10、数据结构转换形式"><a href="#10、数据结构转换形式" class="headerlink" title="10、数据结构转换形式"></a>10、数据结构转换形式</h4><pre><code>//微信公众号：关注挨踢小子
-原表数据结构
- year   month amount
- 1991   1     1.1
- 1991   2     1.2
- 1991   3     1.3
- 1991   4     1.4
- 1992   1     2.1
- 1992   2     2.2
- 1992   3     2.3
- 1992   4     2.4
-
-查成这样一个结果
-
- year m1   m2   m3   m4
- 1991 1.1 1.2 1.3 1.4
- 1992 2.1 2.2 2.3 2.4
-
-select year, 
-    (select amount from   aaa m where month=1   and m.year=aaa.year) as m1,
-    (select amount from   aaa m where month=2   and m.year=aaa.year) as m2,
-    (select amount from   aaa m where month=3   and m.year=aaa.year) as m3,
-    (select amount from   aaa m where month=4   and m.year=aaa.year) as m4
-from aaa   group by year</code></pre><h4 id="11、find-in-set笔记学习（历史文章有详解，此处略）"><a href="#11、find-in-set笔记学习（历史文章有详解，此处略）" class="headerlink" title="11、find_in_set笔记学习（历史文章有详解，此处略）"></a>11、find_in_set笔记学习（历史文章有详解，此处略）</h4><pre><code>SELECT t.dept_id FROM sys_dept t 
-
-WHERE FIND_IN_SET (102,ancestors) </code></pre><h4 id="12、explain查看sql的具体的执行计划-历史文章有详解，此处略"><a href="#12、explain查看sql的具体的执行计划-历史文章有详解，此处略" class="headerlink" title="12、explain查看sql的具体的执行计划(历史文章有详解，此处略)"></a>12、explain查看sql的具体的执行计划(历史文章有详解，此处略)</h4><pre><code>//微信公众号：关注挨踢小子
-explain select * from tablename</code></pre>
             </div>
             <hr/>
 
@@ -688,9 +651,9 @@ explain select * from tablename</code></pre>
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《挨踢小子SQL常用笔记整理》
+                    《string字符串拼接应使用哪种方式比较好》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2018/01/22/ai-ti-xiao-zi-sql-chang-yong-bi-ji-zheng-li/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2018/01/22/string-zi-fu-chuan-pin-jie-ying-shi-yong-na-chong-fang-shi-bi-jiao-hao/" property="cc:attributionName"
                rel="cc:attributionURL">
                 挨踢
             </a> 采用
@@ -734,19 +697,19 @@ explain select * from tablename</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2018/01/22/java-ji-chu-super-final-static-guan-jian-zi-de-shi-yong/">
+                <a href="/2018/01/22/spring-springmvc-springboot-he-springcloud-gai-nian-de/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Java基础：super、final、static关键字的使用">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Spring、SpringMVC、 SpringBoot和SpringCloud概念的">
                         
-                        <span class="card-title">Java基础：super、final、static关键字的使用</span>
+                        <span class="card-title">Spring、SpringMVC、 SpringBoot和SpringCloud概念的</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java基础：super、final、static关键字的使用
+                            Spring、SpringMVC、 SpringBoot和SpringCloud概念的
                         
                     </div>
                     <div class="publish-info">
@@ -757,8 +720,57 @@ explain select * from tablename</code></pre>
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category" target="_blank">
-                                    Java
+                            <a href="/categories/Spring/" class="post-category" target="_blank">
+                                    Spring
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Spring/" target="_blank">
+                        <span class="chip bg-color">Spring</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2018/01/22/java-mian-shi-string-zhong-de-shi-xian-yuan-li/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="【Java面试】String中 + 的实现原理">
+                        
+                        <span class="card-title">【Java面试】String中 + 的实现原理</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            【Java面试】String中 + 的实现原理
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-01-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/String/" class="post-category" target="_blank">
+                                    String
                                 </a>
                             
                             
@@ -770,56 +782,6 @@ explain select * from tablename</code></pre>
                     
                     <a href="/tags/Java/" target="_blank">
                         <span class="chip bg-color">Java</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
-            </div>
-            <div class="card">
-                <a href="/2018/01/22/ai-ti-xiao-zi-sql-chang-yong-bi-ji-zheng-li/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="挨踢小子SQL常用笔记整理">
-                        
-                        <span class="card-title">挨踢小子SQL常用笔记整理</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            挨踢小子特別整理的12道經典SQL語句，
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-01-22
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/随笔/" class="post-category" target="_blank">
-                                    随笔
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/随笔/" target="_blank">
-                        <span class="chip bg-color">随笔</span>
                     </a>
                     
                 </div>

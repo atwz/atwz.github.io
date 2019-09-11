@@ -1,3 +1,12 @@
 https://atwz.github.io/2018/09/11/ai-ti-xiao-zi-dui-shu-ju-ku-de-hong-guan-ren-zhi/
+https://atwz.github.io/2018/01/22/shi-me-shi-dui-zhan-dui-zhan-dui-lie-ta-men-de-qu-bie/
+https://atwz.github.io/2018/01/22/hashmap-chang-yong-fang-fa-di-ceng-jie-gou-kuo-rong-ji-zhi/
+https://atwz.github.io/2018/01/22/spring-springmvc-springboot-he-springcloud-gai-nian-de/
+https://atwz.github.io/2018/01/22/string-zi-fu-chuan-pin-jie-ying-shi-yong-na-chong-fang-shi-bi-jiao-hao/
+https://atwz.github.io/2018/01/22/java-mian-shi-string-zhong-de-shi-xian-yuan-li/
+https://atwz.github.io/2018/01/22/mvc-yuan-li-he-mvc-mo-shi-de-you-que-dian/
 https://atwz.github.io/2018/01/22/ai-ti-xiao-zi-mysql-ji-ben-cao-zuo-shou-ce/
+https://atwz.github.io/2018/01/22/ai-ti-xiao-zi-mysql-shu-ju-zi-dian-yuan-ma/
+https://atwz.github.io/2018/01/22/ai-ti-xiao-zi-mysql-hong-fa-qi-jie-shao-chuang-jian-cha-kan-shan-chu/
+https://atwz.github.io/2018/01/22/java-ji-chu-super-final-static-guan-jian-zi-de-shi-yong/
 https://atwz.github.io/2018/01/22/ai-ti-xiao-zi-sql-chang-yong-bi-ji-zheng-li/

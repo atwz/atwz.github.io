@@ -4,16 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="挨踢小子SQL常用笔记整理, 挨踢小子 Java MySQL">
-    <meta name="description" content="1、复制数据库表数据操作//微信公众号：关注挨踢小子 
-
-1、如果是整个表复制表达如下：
-
-insert into table1 select  * from table2
-
-2、如果是有选择性的复制数据表达如下：
-
-insert into">
+    <meta name="keywords" content="【Java面试】String中 + 的实现原理, 挨踢小子 Java MySQL">
+    <meta name="description" content="说起String拼接，大家会想到几个对比：String：常量，不可变，不适合用来字符串拼接，每次都是新创建的对象，消耗较大。StringBuffer：适合用来作字符串拼接StringBuilder：JDK1.5引入，适合用来作字符串拼接，与">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -21,7 +13,7 @@ insert into">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>挨踢小子SQL常用笔记整理 | 挨踢小子</title>
+    <title>【Java面试】String中 + 的实现原理 | 挨踢小子</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -288,13 +280,13 @@ insert into">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        挨踢小子SQL常用笔记整理
+                        【Java面试】String中 + 的实现原理
                     </div>
                 </div>
             </div>
@@ -405,8 +397,8 @@ insert into">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/随笔/" target="_blank">
-                                <span class="chip bg-color">随笔</span>
+                            <a href="/tags/Java/" target="_blank">
+                                <span class="chip bg-color">Java</span>
                             </a>
                         
                     </div>
@@ -417,8 +409,8 @@ insert into">
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/随笔/" class="post-category" target="_blank">
-                                随笔
+                            <a href="/categories/String/" class="post-category" target="_blank">
+                                String
                             </a>
                         
                     </div>
@@ -445,92 +437,25 @@ insert into">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="1、复制数据库表数据操作"><a href="#1、复制数据库表数据操作" class="headerlink" title="1、复制数据库表数据操作"></a>1、复制数据库表数据操作</h4><pre><code>//微信公众号：关注挨踢小子 
+                <h5 id="说起String拼接，大家会想到几个对比："><a href="#说起String拼接，大家会想到几个对比：" class="headerlink" title="说起String拼接，大家会想到几个对比："></a>说起String拼接，大家会想到几个对比：</h5><p><strong>String</strong>：常量，不可变，不适合用来字符串拼接，每次都是新创建的对象，消耗较大。<br><strong>StringBuffer</strong>：适合用来作字符串拼接<br><strong>StringBuilder</strong>：JDK1.5引入，适合用来作字符串拼接，与StringBuffer区别是他不是线程安全的 </p>
+<p>接下来进入正题String”+”拼接底层实现原理<br>曾见过这样一道题：</p>
+<pre class="line-numbers language-java"><code class="language-java">String s<span class="token operator">=</span>null<span class="token punctuation">;</span>
+s<span class="token operator">=</span>s<span class="token operator">+</span><span class="token string">"abc"</span><span class="token punctuation">;</span>
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>这道题答对结果的很少，我第一次也没有答对，后来是在编译器上运行之后才知道自己错了。<br>String拼接，有字符串变量参与时，中间会产生StringBuilder对象（JDK1.5之前产生StringBuffer）</p>
+<h5 id="字符串拼接原理："><a href="#字符串拼接原理：" class="headerlink" title="字符串拼接原理："></a>字符串拼接原理：</h5><p>运行时， 两个字符串str1, str2的拼接首先会调用 String.valueOf(obj)，这个Obj为str1，而String.valueOf(Obj)中的实现是return obj == null ? “null” : obj.toString(), 然后产生StringBuilder， 调用的StringBuilder(str1)构造方法， 把StringBuilder初始化，长度为str1.length()+16，并且调用append(str1)！ 接下来调用StringBuilder.append(str2), 把第二个字符串拼接进去， 然后调用StringBuilder.toString返回结果！</p>
+<h5 id="StringBuilder-str-底层调用"><a href="#StringBuilder-str-底层调用" class="headerlink" title="StringBuilder(str) 底层调用"></a>StringBuilder(str) 底层调用</h5><pre class="line-numbers language-java"><code class="language-java"><span class="token keyword">public</span> <span class="token function">StringBuilder</span><span class="token punctuation">(</span>String str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">append</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="StringBuilder-toString-底层调用"><a href="#StringBuilder-toString-底层调用" class="headerlink" title="StringBuilder.toString 底层调用"></a>StringBuilder.toString 底层调用</h5><pre class="line-numbers language-java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> String <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token comment" spellcheck="true">// Create a copy, don't share the array</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>所以答案就是：StringBuilder(“null”).append(“abc”).toString();</p>
 
-1、如果是整个表复制表达如下：
-
-insert into table1 select  * from table2
-
-2、如果是有选择性的复制数据表达如下：
-
-insert into table1(column1,column2,column3...) 
-select column1,column2,colunm3...from table2
-
-3、一个数据库中的表中的数据复制到另一个数据库中的一个表，使用方法如下：
-
-insert into 数据库A.dbo.table1(col1,col2,col3...) 
-select col1,col2,col3... from 数据库B.dbo.table2 
-
-4、直接复制现有表重命名
-
-CREATE  TABLE 表名  AS SELECT 语句；</code></pre><h4 id="2、sql的子查询可以放到查询字段之中"><a href="#2、sql的子查询可以放到查询字段之中" class="headerlink" title="2、sql的子查询可以放到查询字段之中"></a>2、sql的子查询可以放到查询字段之中</h4><pre><code>//微信公众号：关注挨踢小子 
-select  name,age,(select date from tableB)
-from tableA  where age=&quot;12&quot;；</code></pre><h4 id="3、一张表中两个字段值互换（重点思想）"><a href="#3、一张表中两个字段值互换（重点思想）" class="headerlink" title="3、一张表中两个字段值互换（重点思想）"></a>3、一张表中两个字段值互换（重点思想）</h4><pre><code>//微信公众号：关注挨踢小子 
-update table a, table b 
-set a.filed1= b.field2, a.field2= b.field1
-where a.id = b.id</code></pre><h4 id="4、实现数据库两列数据的上下移动操作"><a href="#4、实现数据库两列数据的上下移动操作" class="headerlink" title="4、实现数据库两列数据的上下移动操作"></a>4、实现数据库两列数据的上下移动操作</h4><pre><code>//微信公众号：关注挨踢小子 
-update test set priority=   
-
-(case when id=1  then    
-
-(select priority from test where id=2)    
-
-when id=2 then    
-
-(select priority from test where id=1) end)   
-
- where id=1 or id=2; </code></pre><h4 id="5、mysql合并字符串"><a href="#5、mysql合并字符串" class="headerlink" title="5、mysql合并字符串"></a>5、mysql合并字符串</h4><pre><code>//微信公众号：关注挨踢小子 
-concat(string1,string2,string3,…)
-
-select concat( &#39;1&#39;, &#39;01&#39;,&#39;02&#39;)
-
-// 10102  
-
-concat_ws(separator,str1,str2,...)
-
-select concat_ws(&#39;-&#39;,&#39;1&#39;,&#39;2&#39;,&#39;3&#39;)
-
-// 1-2-3
-group_concat()
-group_concat( 
-[distinct] 要连接的字段 
-[order by 排序字段 asc/desc ] 
-[separator &#39;分隔符&#39;] 
-)
-
-// 例如：
-SELECT  group_concat(content  ORDER BY id DESC separator &#39;-&#39;) from t_noteinfo </code></pre><h4 id="6、删除重复数据，只保留最小ID编号"><a href="#6、删除重复数据，只保留最小ID编号" class="headerlink" title="6、删除重复数据，只保留最小ID编号"></a>6、删除重复数据，只保留最小ID编号</h4><pre><code>delete tablename where id not in(select min(id) 
-from tablename group by name,………………)</code></pre><h4 id="7、两张关联表，删除主表中已经在副表中没有的信息"><a href="#7、两张关联表，删除主表中已经在副表中没有的信息" class="headerlink" title="7、两张关联表，删除主表中已经在副表中没有的信息"></a>7、两张关联表，删除主表中已经在副表中没有的信息</h4><pre><code>delete from info where not exists 
-
-(select * from infobz where info.infid=infobz.infid)</code></pre><h4 id="8、日程安排提前五分钟提醒（日期操作）"><a href="#8、日程安排提前五分钟提醒（日期操作）" class="headerlink" title="8、日程安排提前五分钟提醒（日期操作）"></a>8、日程安排提前五分钟提醒（日期操作）</h4><pre><code>select * from 日程安排 
-
-where datediff(&#39;minute&#39;,f 开始时间,getdate())&gt;5</code></pre><h4 id="9、查询出每门课都大于90-分的学生姓名"><a href="#9、查询出每门课都大于90-分的学生姓名" class="headerlink" title="9、查询出每门课都大于90 分的学生姓名"></a>9、查询出每门课都大于90 分的学生姓名</h4><pre><code>select name from table group by name having min(fenshu)&gt;90</code></pre><h4 id="10、数据结构转换形式"><a href="#10、数据结构转换形式" class="headerlink" title="10、数据结构转换形式"></a>10、数据结构转换形式</h4><pre><code>//微信公众号：关注挨踢小子
-原表数据结构
- year   month amount
- 1991   1     1.1
- 1991   2     1.2
- 1991   3     1.3
- 1991   4     1.4
- 1992   1     2.1
- 1992   2     2.2
- 1992   3     2.3
- 1992   4     2.4
-
-查成这样一个结果
-
- year m1   m2   m3   m4
- 1991 1.1 1.2 1.3 1.4
- 1992 2.1 2.2 2.3 2.4
-
-select year, 
-    (select amount from   aaa m where month=1   and m.year=aaa.year) as m1,
-    (select amount from   aaa m where month=2   and m.year=aaa.year) as m2,
-    (select amount from   aaa m where month=3   and m.year=aaa.year) as m3,
-    (select amount from   aaa m where month=4   and m.year=aaa.year) as m4
-from aaa   group by year</code></pre><h4 id="11、find-in-set笔记学习（历史文章有详解，此处略）"><a href="#11、find-in-set笔记学习（历史文章有详解，此处略）" class="headerlink" title="11、find_in_set笔记学习（历史文章有详解，此处略）"></a>11、find_in_set笔记学习（历史文章有详解，此处略）</h4><pre><code>SELECT t.dept_id FROM sys_dept t 
-
-WHERE FIND_IN_SET (102,ancestors) </code></pre><h4 id="12、explain查看sql的具体的执行计划-历史文章有详解，此处略"><a href="#12、explain查看sql的具体的执行计划-历史文章有详解，此处略" class="headerlink" title="12、explain查看sql的具体的执行计划(历史文章有详解，此处略)"></a>12、explain查看sql的具体的执行计划(历史文章有详解，此处略)</h4><pre><code>//微信公众号：关注挨踢小子
-explain select * from tablename</code></pre>
             </div>
             <hr/>
 
@@ -688,9 +613,9 @@ explain select * from tablename</code></pre>
             <br/>
             <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text"
                   property="dct:title" rel="dct:type">
-                    《挨踢小子SQL常用笔记整理》
+                    《【Java面试】String中 + 的实现原理》
                 </span> 由
-            <a xmlns:cc="http://creativecommons.org/ns#" href="/2018/01/22/ai-ti-xiao-zi-sql-chang-yong-bi-ji-zheng-li/" property="cc:attributionName"
+            <a xmlns:cc="http://creativecommons.org/ns#" href="/2018/01/22/java-mian-shi-string-zhong-de-shi-xian-yuan-li/" property="cc:attributionName"
                rel="cc:attributionURL">
                 挨踢
             </a> 采用
@@ -734,19 +659,19 @@ explain select * from tablename</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2018/01/22/java-ji-chu-super-final-static-guan-jian-zi-de-shi-yong/">
+                <a href="/2018/01/22/string-zi-fu-chuan-pin-jie-ying-shi-yong-na-chong-fang-shi-bi-jiao-hao/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Java基础：super、final、static关键字的使用">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="string字符串拼接应使用哪种方式比较好">
                         
-                        <span class="card-title">Java基础：super、final、static关键字的使用</span>
+                        <span class="card-title">string字符串拼接应使用哪种方式比较好</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Java基础：super、final、static关键字的使用
+                            string字符串拼接应使用哪种方式比较好
                         
                     </div>
                     <div class="publish-info">
@@ -757,8 +682,8 @@ explain select * from tablename</code></pre>
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Java/" class="post-category" target="_blank">
-                                    Java
+                            <a href="/categories/String/" class="post-category" target="_blank">
+                                    String
                                 </a>
                             
                             
@@ -780,22 +705,22 @@ explain select * from tablename</code></pre>
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="fa fa-dot-circle-o"></i>
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2018/01/22/ai-ti-xiao-zi-sql-chang-yong-bi-ji-zheng-li/">
+                <a href="/2018/01/22/mvc-yuan-li-he-mvc-mo-shi-de-you-que-dian/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="挨踢小子SQL常用笔记整理">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="MVC原理和MVC模式的优缺点">
                         
-                        <span class="card-title">挨踢小子SQL常用笔记整理</span>
+                        <span class="card-title">MVC原理和MVC模式的优缺点</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            挨踢小子特別整理的12道經典SQL語句，
+                            MVC原理和MVC模式的优缺点
                         
                     </div>
                     <div class="publish-info">
@@ -806,20 +731,19 @@ explain select * from tablename</code></pre>
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/随笔/" class="post-category" target="_blank">
-                                    随笔
+                            <a href="/categories/MVC/" class="post-category" target="_blank">
+                                    MVC
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/随笔/" target="_blank">
-                        <span class="chip bg-color">随笔</span>
+                    <a href="/tags/MVC/" target="_blank">
+                        <span class="chip bg-color">MVC</span>
                     </a>
                     
                 </div>
